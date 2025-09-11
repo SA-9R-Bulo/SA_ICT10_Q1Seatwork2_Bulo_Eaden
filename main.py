@@ -2,7 +2,7 @@ import asyncio
 from js import document
 from pyscript import display
 
-# Wait for an element with a specific ID to appear in the DOM
+# Wait until an element with the given ID is available in the DOM
 async def wait_for_element(id):
     while not document.getElementById(id):
         await asyncio.sleep(0.05)
@@ -38,9 +38,19 @@ async def main():
         "Sparkling Water": 44,
     }
 
-    common_allergens = {"gluten", "dairy", "nuts"}
+ 
+    ids = [
+        "name1", "owner", "since", "heading1",
+        "prod1", "price1", "stock1",
+        "prod2", "price2", "stock2",
+        "prod3", "price3", "stock3",
+        "prod4", "price4", "stock4",
+        "prod5", "price5", "stock5",
+        "openingHours", "orderType"
+    ]
+    await asyncio.gather(*(wait_for_element(i) for i in ids))
 
-
+    # Display restaurant info
     display(restaurant_name, target="name1")
     display(f"Owner: {owner_name}", target="owner")
     display(f"Since {year_since}", target="since")
@@ -63,5 +73,5 @@ async def main():
     display(f"Open: {business_hours[0]} - {business_hours[1]}", target="openingHours")
     display("Dine-in Available", target="orderType")
 
-# Run it
+# Run the main function
 asyncio.ensure_future(main())
