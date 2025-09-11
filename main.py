@@ -32,29 +32,15 @@ async def main():
 
     stock = {
         "Tonkotsu Shoyu Ramen": 11,
-        "Chicken Karaage": 10,
+        "Chicken Karaage": 30,
         "Pork cutlet curry": 12,
-        "Iced Tea": 15,
-        "Sparkling Water": 14,
+        "Iced Tea": 25,
+        "Sparkling Water": 44,
     }
 
     common_allergens = {"gluten", "dairy", "nuts"}
 
-    # Ensure all elements are present before updating
-    element_ids = [
-        "name1", "owner", "since", "heading1",
-        "prod1", "price1", "stock1",
-        "prod2", "price2", "stock2",
-        "prod3", "price3", "stock3",
-        "prod4", "price4", "stock4",
-        "prod5", "price5", "stock5",
-        "openingHours", "orderType"
-    ]
 
-    # Wait for all elements
-    await asyncio.gather(*(wait_for_element(eid) for eid in element_ids))
-
-    # Display restaurant info
     display(restaurant_name, target="name1")
     display(f"Owner: {owner_name}", target="owner")
     display(f"Since {year_since}", target="since")
